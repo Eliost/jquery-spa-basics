@@ -5,7 +5,7 @@
         $.each(products, function(id, product) {
             productsContent += `
             <div class="col-12 col-md-6 col-lg-4" style="margin-top: 15px; margin-bottom: 15px;">
-                <div class="card" data-product="${JSON.stringify(product)}">
+                <div class="card" data-product='${JSON.stringify(product)}'>
                     <img class="card-img-top" src="${product.image}" alt="Card image cap" style="width: 150px; height: 150px; margin: 0 auto;">
                     <div class="card-body">
                         <h4 class="card-title" style="height:80px; overflow: hidden;">${product.title}</h4>
@@ -24,6 +24,23 @@
             `;
     
             $('.products .row').html(productsContent);
-        })
+        });
+        $('body').trigger('PRODUCT_LOADED');
     });
 })();
+
+$('body').on('PRODUCT_LOADED',function(){
+    $('.col').click(function(event){
+        event.preventDefault();
+        let product = {};
+        product = $(this).parents('.card').data('product');
+        console.log(product);
+        let id = product.id;
+        let title = product.title;
+        let price = product.price;
+        sessionStorage.setItem("id",id);
+        sessionStorage.setItem("title",title);
+        sessionStorage.setItem("price",price);
+    });
+})
+

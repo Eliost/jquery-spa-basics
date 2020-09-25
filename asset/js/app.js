@@ -2,6 +2,12 @@
 
 let MON_SUPER_SITE = {};
 
+/*let addCardButton = function(){
+    $(".btn btn-success").click(function() {
+        $('.col-md-8 mb-8').load('templates/panier.html');
+      });
+}*/
+
 let addLogoutButton = function () {
     $('.logout').load('templates/partials/_logout.html');
 }
